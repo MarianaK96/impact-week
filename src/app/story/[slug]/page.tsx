@@ -47,6 +47,20 @@ Shane's program has grown from serving 10 youth to over 150 participants annuall
 What makes Shane's approach unique is the emphasis on holistic support that addresses not just academic needs but also emotional, social, and practical life challenges. The program creates a supportive community where young people can build confidence, develop leadership skills, and envision positive futures for themselves.
 
 Shane's story demonstrates that sometimes the most powerful way to heal from difficult circumstances is to help others facing similar challenges, creating cycles of positive change that strengthen entire communities.`
+  },
+  james: {
+    name: "James",
+    content: `James's story begins with a personal tragedy that would ultimately reshape his life's purpose. After losing his younger brother in a car accident caused by a distracted driver, James channeled his grief into advocacy for road safety and responsible driving.
+
+What started as a way to cope with loss became a mission to prevent other families from experiencing similar heartbreak. James began speaking at high schools about the dangers of distracted driving, sharing his brother's story and the devastating impact it had on his family.
+
+His passionate presentations resonated with students, and requests for his talks began pouring in from schools across the state. Recognizing the need for a more comprehensive approach, James founded a nonprofit organization dedicated to promoting safe driving habits among young people.
+
+The organization developed innovative programs including interactive driving simulations, peer-to-peer education initiatives, and partnerships with local law enforcement to create positive interactions between police and youth. James also lobbied for stronger distracted driving laws and worked with technology companies to develop apps that encourage safe driving behaviors.
+
+Through his tireless advocacy, James has reached over 50,000 young drivers with his safety message. Statistics show a 30% reduction in teen traffic accidents in areas where his programs have been implemented. His work has been recognized by national safety organizations and has influenced policy changes in multiple states.
+
+James's journey from grief to action demonstrates how personal pain can be transformed into purpose, creating meaningful change that protects others and honors the memory of those we've lost. His story reminds us that even in our darkest moments, we have the power to create light for others.`
   }
 };
 
@@ -92,5 +106,6 @@ export async function generateStaticParams() {
     { slug: 'fentse' },
     { slug: 'mariana' },
     { slug: 'shane' },
+    { slug: 'james' },
   ];
 }

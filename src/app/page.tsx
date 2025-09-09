@@ -5,15 +5,12 @@ export default function Home() {
     { name: "Fentse", slug: "fentse" },
     { name: "Mariana", slug: "mariana" },
     { name: "Shane", slug: "shane" },
+    { name: "James", slug: "james" },
   ];
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8">
       <div className="mx-auto max-w-md">
-        <h1 className="mb-8 text-center text-5xl font-bold text-white bg-amber-400 p-4 rounded-full">
-          Impact Week Stories
-        </h1>
-
         <div className="space-y-4">
           {stories.map((story) => (
             <Link
