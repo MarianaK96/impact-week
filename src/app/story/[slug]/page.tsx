@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface StoryPageProps {
@@ -8,13 +9,22 @@ interface StoryPageProps {
 }
 
 const stories = {
-  eric: {
-    name: "Eric",
-    content: `Growing up in a small township outside Cape Town, I watched my mother work multiple jobs just to keep food on our table and a roof over our heads. University felt like an impossible dream – something meant for other people's children, not for someone like me whose family counted every rand twice. When I finished matric with distinctions in Mathematics and Physical Science, the acceptance letters felt bittersweet because I knew we simply couldn't afford the fees, accommodation, or even the textbooks. I remember sitting at our kitchen table, staring at the University of Cape Town acceptance letter, feeling like I was holding someone else's future in my hands.
+  brandon: {
+    name: "Brandon",
+    image: "/brandon.jpeg",
+    content: `
+From Construction to College
 
-    Everything changed when my teacher told me about bursaries and encouraged me to apply, even though the deadlines were approaching fast. I spent sleepless nights filling out applications, writing motivation letters, and gathering documents I never knew existed. When I received that life-changing phone call telling me I'd been awarded a full bursary covering tuition, accommodation, meals, and even a monthly allowance for personal expenses, I couldn't stop crying. Now, three years into my Engineering degree, I'm not just surviving at university – I'm thriving. I've joined societies, taken on leadership roles, and maintained academic excellence, all because someone believed that financial circumstances shouldn't determine a person's potential.
+After Brandon finished high school in 2022, he worked in construction for a few months. He really wanted to study business, but his mom couldn't afford to pay for university. His aunt knew Brandon wanted to study, so she looked for schools and found Tsiba Business School in Woodstock. She secretly got all his papers together and filled out most of his application. Then she surprised him by telling him he just needed to finish a few parts of the application.
 
-    If you're reading this and facing similar financial challenges, please don't give up on your dreams. South Africa offers numerous bursary opportunities through the National Student Financial Aid Scheme (NSFAS), private companies, foundations, and universities themselves. Start by visiting the NSFAS website, speak to your school's career guidance counselor, and research bursaries specific to your field of interest. Many applications open as early as August for the following year, so start early and apply widely. Remember, your current circumstances don't define your future – there are people and organizations ready to invest in your potential. Your story of success could be the next one inspiring someone else to keep pushing forward.`,
+Getting Help to Study
+
+In 2023, Brandon started studying for a Higher Certificate in Business at Tsiba. The school told him how much it would cost, but then he got an email saying someone else had already paid for everything. He had won the Young Living Foundation scholarship because of his good grades. The scholarship pays for all his classes and gives him money each month for transport and other things he needs. When he did well in his first year, he got the scholarship again for 2024 to study for his degree.
+
+Still Studying Today
+
+Brandon is now in his second year (2025) and still gets help from Young Living Foundation because he keeps getting good grades. He says the most important thing was working hard in school and doing well. But he knows his aunt was the key person who helped him - without her, he wouldn't even know about Tsiba. He thinks he would still be working construction today because his family didn't have money for university. Now he's studying business like he always wanted to.
+`,
     resources: [
       {
         title: "NSFAS (National Student Financial Aid Scheme)",
@@ -23,9 +33,9 @@ const stories = {
         url: "https://www.nsfas.org.za",
       },
       {
-        title: "Bursary Motivational Letters",
-        description: "How to write a bursary motivational letter",
-        url: "https://www.zabursaries.co.za/how-to-write-a-bursary-motivational-letter/",
+        title: "Young Living Foundation",
+        description: "Scholarships for future leaders",
+        url: "https://www.younglivingfoundation.org/leadership-fund",
       },
       {
         title: "Your Bursary Application",
@@ -45,6 +55,36 @@ const stories = {
       },
     ],
   },
+  kiki: {
+    name: "Kiki",
+    image: "/kiki.jpeg",
+    content: `From Small Town Dreams to Community Action
+
+Born and raised in rural Eastern Cape, Kiki never left his small town until university. He always wanted to do something meaningful for his community. In 2021, he left his auditing job to pursue farming and approached his community about using available land. The community was willing to transfer the land to his group, but when they knocked on doors asking private corporations to invest, nobody responded.
+
+Fighting for the Vision
+
+While the community supported the idea, some people created problems. Some wanted personal benefits, and when they couldn't see immediate gain, they turned against the project. One of the chiefs even wanted to own the entire project and started speaking badly about Kiki and his team, forcing people in his area to follow his lead. But eventually, the community turned against this chief, and even the king had to get involved to resolve the conflict.
+
+Building Success from the Ground Up
+
+Deciding to move forward on their own, Kiki and the Buyelembo Group started farming on just 5 hectares. Their hard work and progress caught the government's attention, who came to see what they had achieved. This led to expansion to 500 hectares with funding from the Land Bank. Today, Kiki's Buyelembo Group employs 63 permanent workers and 100 seasonal employees, all from the local community across two municipalities, proving that homegrown solutions can create real change
+`,
+    resources: [
+      {
+        title: "SEDA (Small Enterprise Development Agency)",
+        description:
+          "Government agency that provides support to small businesses in South Africa",
+        url: "https://www.seda.org.za",
+      },
+      {
+        title: "SEFA (Small Enterprise Finance Agency)",
+        description:
+          "Government agency that provides financial assistance to small businesses in South Africa",
+        url: "https://www.sefa.org.za",
+      },
+    ],
+  },
 };
 
 export default function StoryPage({ params }: StoryPageProps) {
@@ -59,16 +99,36 @@ export default function StoryPage({ params }: StoryPageProps) {
       <div className="mx-auto max-w-2xl">
         <Link
           href="/"
-          className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
+          className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 mb-6"
         >
-          ← Back to stories
+          <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+              src={story.image}
+              alt={`${story.name}'s photo`}
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="32px"
+            />
+          </div>
+          <span>← Back to stories</span>
         </Link>
 
         <article className="bg-white rounded-lg shadow-md p-6 mb-6">
           <header className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {story.name}&apos;s Story
-            </h1>
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0">
+                <Image
+                  src={story.image}
+                  alt={`${story.name}'s photo`}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="80px"
+                />
+              </div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {story.name}&apos;s Story
+              </h1>
+            </div>
           </header>
 
           <div className="prose prose-gray max-w-none">
