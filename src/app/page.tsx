@@ -1,12 +1,7 @@
 import Link from "next/link";
 
 export default function Home() {
-  const stories = [
-    { name: "Fentse", slug: "fentse" },
-    { name: "Mariana", slug: "mariana" },
-    { name: "Shane", slug: "shane" },
-    { name: "James", slug: "james" },
-  ];
+  const stories = [{ name: "Eric", slug: "eric" }];
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8">

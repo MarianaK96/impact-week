@@ -8,60 +8,43 @@ interface StoryPageProps {
 }
 
 const stories = {
-  fentse: {
-    name: "Fentse",
-    content: `Fentse's journey began in a small village in Lesotho, where access to education was limited and opportunities seemed scarce. Despite facing numerous challenges, including financial hardships and limited resources, Fentse never gave up on their dream of making a positive impact in their community.
+  eric: {
+    name: "Eric",
+    content: `Growing up in a small township outside Cape Town, I watched my mother work multiple jobs just to keep food on our table and a roof over our heads. University felt like an impossible dream – something meant for other people's children, not for someone like me whose family counted every rand twice. When I finished matric with distinctions in Mathematics and Physical Science, the acceptance letters felt bittersweet because I knew we simply couldn't afford the fees, accommodation, or even the textbooks. I remember sitting at our kitchen table, staring at the University of Cape Town acceptance letter, feeling like I was holding someone else's future in my hands.
 
-Through determination and hard work, Fentse discovered their passion for technology and education. They started by teaching basic computer skills to local children using an old laptop donated by a charity organization. What began as informal sessions under a tree soon grew into structured classes that attracted learners of all ages.
+    Everything changed when my teacher told me about bursaries and encouraged me to apply, even though the deadlines were approaching fast. I spent sleepless nights filling out applications, writing motivation letters, and gathering documents I never knew existed. When I received that life-changing phone call telling me I'd been awarded a full bursary covering tuition, accommodation, meals, and even a monthly allowance for personal expenses, I couldn't stop crying. Now, three years into my Engineering degree, I'm not just surviving at university – I'm thriving. I've joined societies, taken on leadership roles, and maintained academic excellence, all because someone believed that financial circumstances shouldn't determine a person's potential.
 
-Fentse's innovative approach to combining traditional learning methods with modern technology created a unique educational experience. They developed simple apps and games that helped students learn mathematics and literacy in their native language, making education more accessible and engaging for everyone.
-
-Today, Fentse's initiative has grown into a thriving community learning center that serves over 200 students. Their story demonstrates that with passion, perseverance, and creativity, one person can transform an entire community and create lasting change that extends far beyond their initial vision.
-
-The impact of Fentse's work continues to ripple through the community, inspiring others to pursue education and empowering a new generation of learners who will carry forward the torch of knowledge and innovation.`
+    If you're reading this and facing similar financial challenges, please don't give up on your dreams. South Africa offers numerous bursary opportunities through the National Student Financial Aid Scheme (NSFAS), private companies, foundations, and universities themselves. Start by visiting the NSFAS website, speak to your school's career guidance counselor, and research bursaries specific to your field of interest. Many applications open as early as August for the following year, so start early and apply widely. Remember, your current circumstances don't define your future – there are people and organizations ready to invest in your potential. Your story of success could be the next one inspiring someone else to keep pushing forward.`,
+    resources: [
+      {
+        title: "NSFAS (National Student Financial Aid Scheme)",
+        description:
+          "Government bursary and loan scheme for South African students",
+        url: "https://www.nsfas.org.za",
+      },
+      {
+        title: "Bursary Motivational Letters",
+        description: "How to write a bursary motivational letter",
+        url: "https://www.zabursaries.co.za/how-to-write-a-bursary-motivational-letter/",
+      },
+      {
+        title: "Your Bursary Application",
+        description: "Tips to submitting your bursary application",
+        url: "https://www.zabursaries.co.za/tips-to-submitting-a-bursary-application/",
+      },
+      {
+        title: "How to get free education in South Africa",
+        description:
+          "Contact your university's financial aid office for institution-specific bursaries",
+        url: "https://www.zabursaries.co.za/how-to-get-free-education-in-south-africa/",
+      },
+      {
+        title: "University Bursary Offices",
+        description:
+          "Contact your university's financial aid office for institution-specific bursaries",
+      },
+    ],
   },
-  mariana: {
-    name: "Mariana",
-    content: `Mariana's story is one of resilience and innovation in the face of environmental challenges. Growing up in a coastal community in Brazil, she witnessed firsthand the devastating effects of pollution on marine ecosystems and local fishing communities.
-
-As a marine biology student, Mariana was deeply moved by the decline in fish populations and the accumulation of plastic waste in the ocean. Instead of accepting this as an inevitable reality, she decided to take action. She began organizing beach cleanups and educating local schools about marine conservation.
-
-What started as weekend volunteer work evolved into a comprehensive environmental program. Mariana developed partnerships with local businesses, schools, and government agencies to create sustainable solutions for waste management and marine protection.
-
-Her innovative approach included creating artificial reefs from recycled materials, establishing marine protected areas, and developing educational programs that teach children about ocean conservation through hands-on activities and interactive workshops.
-
-Through her leadership, Mariana's community has reduced plastic waste by 40% and restored critical marine habitats. Her work has been recognized nationally, and she now mentors young environmental activists across Latin America.
-
-Mariana's journey shows how individual passion can catalyze community-wide change and demonstrates that environmental conservation is not just about protecting nature, but about creating sustainable livelihoods and healthier communities for future generations.`
-  },
-  shane: {
-    name: "Shane",
-    content: `Shane's transformation from struggling student to community leader exemplifies the power of mentorship and second chances. Growing up in an underserved urban neighborhood, Shane faced numerous obstacles including poverty, family instability, and limited educational opportunities.
-
-Despite these challenges, a dedicated teacher recognized Shane's potential and provided the support and encouragement needed to excel academically. This mentorship became a turning point, inspiring Shane to pursue higher education and eventually earn a degree in social work.
-
-Understanding the importance of giving back, Shane returned to their community with a mission to provide the same type of support that had changed their own life. They established a youth mentorship program that pairs at-risk teenagers with positive role models and provides academic support, life skills training, and career guidance.
-
-Shane's program has grown from serving 10 youth to over 150 participants annually. The initiative includes after-school tutoring, summer internships, college preparation workshops, and mental health support services. Many program graduates have gone on to attend college, secure stable employment, and become mentors themselves.
-
-What makes Shane's approach unique is the emphasis on holistic support that addresses not just academic needs but also emotional, social, and practical life challenges. The program creates a supportive community where young people can build confidence, develop leadership skills, and envision positive futures for themselves.
-
-Shane's story demonstrates that sometimes the most powerful way to heal from difficult circumstances is to help others facing similar challenges, creating cycles of positive change that strengthen entire communities.`
-  },
-  james: {
-    name: "James",
-    content: `James's story begins with a personal tragedy that would ultimately reshape his life's purpose. After losing his younger brother in a car accident caused by a distracted driver, James channeled his grief into advocacy for road safety and responsible driving.
-
-What started as a way to cope with loss became a mission to prevent other families from experiencing similar heartbreak. James began speaking at high schools about the dangers of distracted driving, sharing his brother's story and the devastating impact it had on his family.
-
-His passionate presentations resonated with students, and requests for his talks began pouring in from schools across the state. Recognizing the need for a more comprehensive approach, James founded a nonprofit organization dedicated to promoting safe driving habits among young people.
-
-The organization developed innovative programs including interactive driving simulations, peer-to-peer education initiatives, and partnerships with local law enforcement to create positive interactions between police and youth. James also lobbied for stronger distracted driving laws and worked with technology companies to develop apps that encourage safe driving behaviors.
-
-Through his tireless advocacy, James has reached over 50,000 young drivers with his safety message. Statistics show a 30% reduction in teen traffic accidents in areas where his programs have been implemented. His work has been recognized by national safety organizations and has influenced policy changes in multiple states.
-
-James's journey from grief to action demonstrates how personal pain can be transformed into purpose, creating meaningful change that protects others and honors the memory of those we've lost. His story reminds us that even in our darkest moments, we have the power to create light for others.`
-  }
 };
 
 export default function StoryPage({ params }: StoryPageProps) {
@@ -74,38 +57,60 @@ export default function StoryPage({ params }: StoryPageProps) {
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8">
       <div className="mx-auto max-w-2xl">
-        <Link 
+        <Link
           href="/"
           className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6"
         >
           ← Back to stories
         </Link>
-        
-        <article className="bg-white rounded-lg shadow-md p-6">
+
+        <article className="bg-white rounded-lg shadow-md p-6 mb-6">
           <header className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {story.name}&apos;s Story
             </h1>
           </header>
-          
+
           <div className="prose prose-gray max-w-none">
-            {story.content.split('\n\n').map((paragraph, index) => (
+            {story.content.split("\n\n").map((paragraph, index) => (
               <p key={index} className="mb-4 text-gray-700 leading-relaxed">
                 {paragraph}
               </p>
             ))}
           </div>
         </article>
+
+        {story.resources && story.resources.length > 0 && (
+          <section className="bg-white rounded-lg shadow-md p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Resources</h2>
+            <div className="space-y-4">
+              {story.resources.map((resource, index) => (
+                <div key={index} className="border-l-4 border-blue-500 pl-4">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    {resource.url ? (
+                      <a
+                        href={resource.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 hover:underline"
+                      >
+                        {resource.title}
+                      </a>
+                    ) : (
+                      resource.title
+                    )}
+                  </h3>
+                  <p className="text-gray-600">{resource.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
 }
 
 export async function generateStaticParams() {
-  return [
-    { slug: 'fentse' },
-    { slug: 'mariana' },
-    { slug: 'shane' },
-    { slug: 'james' },
-  ];
+  return [{ slug: "eric" }];
 }
