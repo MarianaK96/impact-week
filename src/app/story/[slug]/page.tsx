@@ -1,19 +1,35 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { useState, use } from "react";
 
 interface StoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-const stories = {
+interface Resource {
+  title: string;
+  description: string;
+  url?: string;
+}
+
+interface Story {
+  name: string;
+  image: string;
+  content: string;
+  howResources: Resource[];
+  getInvolvedResources: Resource[];
+}
+
+const stories: Record<string, Story> = {
   brandon: {
     name: "Brandon",
     image: "/brandon.jpeg",
-    content: `
-From Construction to College
+    content: `From Construction to College
 
 After Brandon finished high school in 2022, he worked in construction for a few months. He really wanted to study business, but his mom couldn't afford to pay for university. His aunt knew Brandon wanted to study, so she looked for schools and found Tsiba Business School in Woodstock. She secretly got all his papers together and filled out most of his application. Then she surprised him by telling him he just needed to finish a few parts of the application.
 
@@ -25,7 +41,7 @@ Still Studying Today
 
 Brandon is now in his second year (2025) and still gets help from Young Living Foundation because he keeps getting good grades. He says the most important thing was working hard in school and doing well. But he knows his aunt was the key person who helped him - without her, he wouldn't even know about Tsiba. He thinks he would still be working construction today because his family didn't have money for university. Now he's studying business like he always wanted to.
 `,
-    resources: [
+    howResources: [
       {
         title: "NSFAS (National Student Financial Aid Scheme)",
         description:
@@ -43,15 +59,27 @@ Brandon is now in his second year (2025) and still gets help from Young Living F
         url: "https://www.zabursaries.co.za/tips-to-submitting-a-bursary-application/",
       },
       {
-        title: "How to get free education in South Africa",
-        description:
-          "Contact your university's financial aid office for institution-specific bursaries",
-        url: "https://www.zabursaries.co.za/how-to-get-free-education-in-south-africa/",
-      },
-      {
         title: "University Bursary Offices",
         description:
           "Contact your university's financial aid office for institution-specific bursaries",
+      },
+    ],
+    getInvolvedResources: [
+      {
+        title: "Tsiba Education Mentorship Program",
+        description: "Become a mentor for current Tsiba students like Brandon",
+        url: "https://www.tsiba.ac.za/mentorship",
+      },
+      {
+        title: "Young Living Foundation Volunteer",
+        description:
+          "Help review scholarship applications and support students",
+        url: "https://www.younglivingfoundation.org/volunteer",
+      },
+      {
+        title: "Local Education Support Groups",
+        description:
+          "Connect with community organizations supporting student success",
       },
     ],
   },
@@ -70,7 +98,7 @@ Building Success from the Ground Up
 
 Deciding to move forward on their own, Kiki and the Buyelembo Group started farming on just 5 hectares. Their hard work and progress caught the government's attention, who came to see what they had achieved. This led to expansion to 500 hectares with funding from the Land Bank. Today, Kiki's Buyelembo Group employs 63 permanent workers and 100 seasonal employees, all from the local community across two municipalities, proving that homegrown solutions can create real change
 `,
-    resources: [
+    howResources: [
       {
         title: "SEDA (Small Enterprise Development Agency)",
         description:
@@ -83,12 +111,37 @@ Deciding to move forward on their own, Kiki and the Buyelembo Group started farm
           "Government agency that provides financial assistance to small businesses in South Africa",
         url: "https://www.sefa.org.za",
       },
+      {
+        title: "Land Bank Development Finance",
+        description: "Agricultural financing and land development support",
+        url: "https://www.landbank.co.za",
+      },
+    ],
+    getInvolvedResources: [
+      {
+        title: "Buyelembo Group Partnership",
+        description:
+          "Connect with Kiki's farming cooperative for collaboration opportunities",
+      },
+      {
+        title: "Rural Development Volunteer Programs",
+        description:
+          "Support agricultural initiatives in Eastern Cape communities",
+      },
+      {
+        title: "Agricultural Mentorship Networks",
+        description: "Share expertise with emerging farmers in rural areas",
+      },
     ],
   },
 };
 
 export default function StoryPage({ params }: StoryPageProps) {
-  const story = stories[params.slug as keyof typeof stories];
+  const { slug } = use(params);
+  const story = stories[slug as keyof typeof stories];
+  const [showResources, setShowResources] = useState<"how" | "involved" | null>(
+    null
+  );
 
   if (!story) {
     notFound();
@@ -132,45 +185,139 @@ export default function StoryPage({ params }: StoryPageProps) {
           </header>
 
           <div className="prose prose-gray max-w-none">
-            {story.content.split("\n\n").map((paragraph, index) => (
-              <p key={index} className="mb-4 text-gray-700 leading-relaxed">
-                {paragraph}
-              </p>
-            ))}
+            {story.content.split("\n\n").map((paragraph, index) => {
+              // Skip empty paragraphs
+              if (paragraph.trim().length === 0) {
+                return null;
+              }
+
+              // Check if this is a heading (single line, no periods/long sentences)
+              const isHeading =
+                paragraph.split("\n").length === 1 &&
+                paragraph.trim().length < 50 &&
+                !paragraph.includes(".") &&
+                !paragraph.includes("?") &&
+                !paragraph.includes("!");
+
+              if (isHeading) {
+                return (
+                  <h2
+                    key={index}
+                    className="text-xl font-semibold text-gray-900 mt-6 mb-3"
+                  >
+                    {paragraph.trim()}
+                  </h2>
+                );
+              }
+
+              return (
+                <p key={index} className="mb-4 text-gray-700 leading-relaxed">
+                  {paragraph}
+                </p>
+              );
+            })}
           </div>
         </article>
 
-        {story.resources && story.resources.length > 0 && (
-          <section className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Resources</h2>
-            <div className="space-y-4">
-              {story.resources.map((resource, index) => (
-                <div key={index} className="border-l-4 border-blue-500 pl-4">
-                  <h3 className="font-semibold text-gray-900 mb-1">
-                    {resource.url ? (
-                      <a
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 hover:underline"
-                      >
-                        {resource.title}
-                      </a>
-                    ) : (
-                      resource.title
-                    )}
-                  </h3>
-                  <p className="text-gray-600">{resource.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+        <section className="bg-white rounded-lg shadow-md p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            What would you like to do?
+          </h2>
+          <div className="space-y-4">
+            <button
+              onClick={() =>
+                setShowResources(
+                  showResources === "involved" ? null : "involved"
+                )
+              }
+              className={`w-full font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-left cursor-pointer ${
+                showResources === "involved"
+                  ? "bg-blue-700 text-white"
+                  : "bg-blue-600 hover:bg-blue-700 text-white"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span>I want to get involved with {story.name}</span>
+                <span className="text-xl">
+                  {showResources === "involved" ? "↓" : "→"}
+                </span>
+              </div>
+            </button>
+
+            {showResources === "involved" && (
+              <div className="bg-blue-50 rounded-lg p-4 space-y-3">
+                <h3 className="font-semibold text-blue-900 mb-3">
+                  Ways to get involved:
+                </h3>
+                {story.getInvolvedResources.map((resource, index) => (
+                  <div key={index} className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="font-semibold text-blue-900 mb-1">
+                      {resource.url ? (
+                        <a
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-700 hover:text-blue-900 hover:underline"
+                        >
+                          {resource.title}
+                        </a>
+                      ) : (
+                        resource.title
+                      )}
+                    </h4>
+                    <p className="text-blue-700">{resource.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <button
+              onClick={() =>
+                setShowResources(showResources === "how" ? null : "how")
+              }
+              className={`w-full font-semibold py-4 px-6 rounded-lg transition-colors duration-200 text-left cursor-pointer ${
+                showResources === "how"
+                  ? "bg-green-700 text-white"
+                  : "bg-green-600 hover:bg-green-700 text-white"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span>I want to find out how {story.name} did this</span>
+                <span className="text-xl">
+                  {showResources === "how" ? "↓" : "→"}
+                </span>
+              </div>
+            </button>
+
+            {showResources === "how" && (
+              <div className="bg-green-50 rounded-lg p-4 space-y-3">
+                <h3 className="font-semibold text-green-900 mb-3">
+                  Resources {story.name} used:
+                </h3>
+                {story.howResources.map((resource, index) => (
+                  <div key={index} className="border-l-4 border-green-500 pl-4">
+                    <h4 className="font-semibold text-green-900 mb-1">
+                      {resource.url ? (
+                        <a
+                          href={resource.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-green-700 hover:text-green-900 hover:underline"
+                        >
+                          {resource.title}
+                        </a>
+                      ) : (
+                        resource.title
+                      )}
+                    </h4>
+                    <p className="text-green-700">{resource.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  return [{ slug: "eric" }];
 }
